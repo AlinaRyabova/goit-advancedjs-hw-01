@@ -32,13 +32,17 @@ loadFormState();
 
 feedbackForm.addEventListener('submit', event => {
   event.preventDefault();
-  const formState = {
-    email: emailInput.value,
-    message: messageTextarea.value,
-  };
-  console.log(formState);
-  emailInput.value = ``;
-  messageTextarea.value = ``;
+  if (emailInput.value && messageTextarea.value) {
+    const formState = {
+      email: emailInput.value,
+      message: messageTextarea.value,
+    };
+    console.log(formState);
+    emailInput.value = ``;
+    messageTextarea.value = ``;
 
-  localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(STORAGE_KEY);
+  } else {
+    alert(`Будь ласка, заповніть обидва поля форми`);
+  }
 });
